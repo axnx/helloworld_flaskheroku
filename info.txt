@@ -1,0 +1,51 @@
+createenv.cmd
+
+>flask run
+
+http://127.0.0.1:5000/
+
+helloworld> git init 
+helloworld> git add .   
+helloworld> git commit -m "Initial Commit"
+
+helloworld> heroku login
+
+heroku create helloworld-app
+helloworld> heroku create helloworldstochie-app
+
+Creating ⬢ helloworldstochie-app... done
+https://helloworldstochie-app.herokuapp.com/ | https://git.heroku.com/helloworldstochie-app.git
+(C:\Users\User\Desktop\test2\helloworldstochie\env379hw) PS C:\Users\User\Desktop\test2\helloworldstochie> 
+
+helloworld> git push heroku master
+
+Enumerating objects: 5978, done.
+Counting objects: 100% (5978/5978), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (5929/5929), done.
+Writing objects: 100% (5978/5978), 34.28 MiB | 2.95 MiB/s, done.
+Total 5978 (delta 758), reused 0 (delta 0), pack-reused 0
+remote: Compressing source files... done.
+remote: Building source:
+remote: 
+remote:  !     No default language could be detected for this app.
+remote:                         HINT: This occurs when Heroku cannot detect the buildpack to use for this application automatically.
+remote:                         See https://devcenter.heroku.com/articles/buildpacks
+remote:
+remote:  !     Push failed
+remote: Verifying deploy...
+remote: 
+remote: !       Push rejected to helloworldstochie-app.
+remote:
+To https://git.heroku.com/helloworldstochie-app.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'https://git.heroku.com/helloworldstochie-app.git'
+
+
+> At app creation: heroku create --buildpack heroku/python app_name
+> For an existing app: heroku buildpacks:set heroku/python
+
+heroku logs
+
+> pip3 freeze
+> pip3 freeze > requirements.txt s
