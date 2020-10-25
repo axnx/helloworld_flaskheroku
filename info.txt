@@ -4,6 +4,9 @@ createenv.cmd
 
 http://127.0.0.1:5000/
 
+> pip3 freeze
+> pip3 freeze > requirements.txt
+
 helloworld> git init 
 helloworld> git add .   
 helloworld> git commit -m "Initial Commit"
@@ -18,34 +21,92 @@ https://helloworldstochie-app.herokuapp.com/ | https://git.heroku.com/helloworld
 (C:\Users\User\Desktop\test2\helloworldstochie\env379hw) PS C:\Users\User\Desktop\test2\helloworldstochie> 
 
 helloworld> git push heroku master
-
-Enumerating objects: 5978, done.
-Counting objects: 100% (5978/5978), done.
+(env379x) PS C:\Users\User\Desktop\test2\helloworldstochie> git add .
+(env379x) PS C:\Users\User\Desktop\test2\helloworldstochie> git commit -m "neu6"
+[master b6d183f] neu6
+ 1 file changed, 1 insertion(+)
+(env379x) PS C:\Users\User\Desktop\test2\helloworldstochie> git push heroku master
+Enumerating objects: 15, done.
+Counting objects: 100% (15/15), done.
 Delta compression using up to 4 threads
-Compressing objects: 100% (5929/5929), done.
-Writing objects: 100% (5978/5978), 34.28 MiB | 2.95 MiB/s, done.
-Total 5978 (delta 758), reused 0 (delta 0), pack-reused 0
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (15/15), 2.26 KiB | 772.00 KiB/s, done.
+Total 15 (delta 1), reused 0 (delta 0), pack-reused 0
 remote: Compressing source files... done.
 remote: Building source:
 remote: 
-remote:  !     No default language could be detected for this app.
-remote:                         HINT: This occurs when Heroku cannot detect the buildpack to use for this application automatically.
-remote:                         See https://devcenter.heroku.com/articles/buildpacks
+remote: -----> Python app detected
+remote: -----> Installing python-3.7.9
+remote: -----> Installing pip 20.1.1, setuptools 47.1.1 and wheel 0.34.2
+remote: -----> Installing SQLite3
+remote: -----> Installing requirements with pip
+remote:        Collecting certifi==2020.6.20
+remote:          Downloading certifi-2020.6.20-py2.py3-none-any.whl (156 kB)
+remote:        Collecting click==7.1.2
+remote:          Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+remote:        Collecting Flask==1.1.2
+remote:          Downloading Flask-1.1.2-py2.py3-none-any.whl (94 kB)
+remote:        Collecting itsdangerous==1.1.0
+remote:          Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+remote:        Collecting Jinja2==2.11.2
+remote:          Downloading Jinja2-2.11.2-py2.py3-none-any.whl (125 kB)
+remote:        Collecting MarkupSafe==1.1.1
+remote:        Collecting Werkzeug==1.0.1
+remote:          Downloading Werkzeug-1.0.1-py2.py3-none-any.whl (298 kB)
+remote:        Collecting wincertstore==0.2
+remote:          Downloading wincertstore-0.2-py2.py3-none-any.whl (8.8 kB)
+remote:        Installing collected packages: certifi, click, Werkzeug, itsdangerous, MarkupSafe, Jinja2, Flask, wincertstore
+remote:        Successfully installed Flask-1.1.2 Jinja2-2.11.2 MarkupSafe-1.1.1 Werkzeug-1.0.1 certifi-2020.6.20 click-7.1.2 itsdangerous-1.1.0 wincertstore-0.2
+remote: -----> Discovering process types
+remote:        Procfile declares types -> (none)
 remote:
-remote:  !     Push failed
-remote: Verifying deploy...
-remote: 
-remote: !       Push rejected to helloworldstochie-app.
+remote: -----> Compressing...
+remote:        Done: 48.6M
+remote: -----> Launching...
+remote:        Released v3
+remote:        https://helloworldstochie-app.herokuapp.com/ deployed to Heroku
 remote:
+remote: Verifying deploy... done.
 To https://git.heroku.com/helloworldstochie-app.git
- ! [remote rejected] master -> master (pre-receive hook declined)
-error: failed to push some refs to 'https://git.heroku.com/helloworldstochie-app.git'
+ * [new branch]      master -> master
 
-
+ERROR WITH LANGUAGEPACK !
 > At app creation: heroku create --buildpack heroku/python app_name
 > For an existing app: heroku buildpacks:set heroku/python
 
 heroku logs
 
-> pip3 freeze
-> pip3 freeze > requirements.txt s
+
+
+
+https://helloworldstochie-app.herokuapp.com/
+
+Application error
+An error occurred in the application and your page could not be served. If you are the application owner, check your logs for details. You can do this from the Heroku CLI with the command
+
+
+heroku logs --tail
+
+
+The issue here is that you're not running any web dynos. You can tell Heroku to do this via:
+
+$ heroku ps:scale web=1
+Scaling dynos... !
+ !    Couldn't find that process type (web).
+
+heroku buildpacks:clear
+heroku buildpacks:set heroku/python
+heroku buildpacks:add --index 1 heroku/python
+git commit --allow-empty -m "Adjust buildpacks on Heroku"
+git push heroku master
+heroku ps:scale web=1
+
+Procfile
+Procfile.Windows
+
+and after just do a commit to local repository,so the steps will be:
+
+* heroku login heroku create git commit -m "gogogo heroku" git push heroku master heroku ps:scale web=1 heroku open
+
+heroku ps -a helloworldstochie-app
+
